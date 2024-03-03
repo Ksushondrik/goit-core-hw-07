@@ -39,7 +39,7 @@ def show_phone (args, book: AddressBook):
     name, *_ = args
     record = book.find(name)
     if isinstance(record, Record):
-        return record
+        print(record)
     else:
         raise Exception("Not found!")
 
@@ -69,7 +69,7 @@ def show_birthday(args, book: AddressBook):
     name, *_ = args
     record = book.find(name)
     if isinstance(record, Record):
-        return record
+        print(record)
     else:
         raise Exception("Not found!")
 

@@ -14,22 +14,33 @@ def main():
             break
         elif command == "hello":
             print("How can I help you?")
+        elif command == "help":
+            print("I understand these commands:")
+            print("hello")
+            print("add [name] [phone]")
+            print("change [old_phone] [new_phone]")
+            print("phone [name]")
+            print("all")
+            print("add_b_day [name] [birthday]")
+            print("show_b_day [name]")
+            print("birthdays")
+            print("exit/close")
         elif command == "add":
             print(fu.add_contact(args, book))
         elif command == "change":
             print(fu.change_contact(args, book))
         elif command == "phone":
-            print(fu.show_phone(args, book))
+            fu.show_phone(args, book)
         elif command == "all":
             print(fu.show_all(book))
         elif command == "add_b_day":
             print(fu.add_birthday(args, book))
         elif command == "show_b_day":
-            print(fu.show_birthday(args, book))
+            fu.show_birthday(args, book)
         elif command == "birthdays":
             print(fu.soon_birthdays(book))
         else:
-            print("Invalid command.")
+            print("Invalid command. Enter 'help' for help)")
 
 
 if __name__ == "__main__":
