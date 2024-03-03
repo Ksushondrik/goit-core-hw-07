@@ -1,6 +1,6 @@
 from collections import UserDict
 from datetime import datetime, timedelta
-import re
+import re, inspect
 
 
 # Базовий клас для полів запису
@@ -81,12 +81,21 @@ class Record:
             if number.value == phone:
                 self.phones.remove(number)
 
+    # Додавання дати народження
     def add_birthday(self, birthday: str):
         self.birthday = Birthday(birthday)
 
     # Формат виводу даних про контакт
     def __str__(self) -> str:
-        return f"Contact name: {self.name},\t phones: {'; '.join(phone.value for phone in self.phones)}"
+        stack = inspect.stack()         # Отримуємо стек викликів
+        current_call = stack[1]         # Перший елемент стеку - поточний виклик
+        caller_function_name = current_call.function        # Отримуємо ім'я функції, яка викликає метод
+        if caller_function_name == "show_phone":
+            return f"Contact name: {self.name},\t phones: {'; '.join(phone.value for phone in self.phones)}."
+        elif caller_function_name == "show_birthday":
+            return f"Contact name: {self.name},\t birthday: {self.birthday}."
+        else:
+            return f"Contact name: {self.name},\t phones: {'; '.join(phone.value for phone in self.phones)},\t birthday: {self.birthday}."
 
 
 # Клас для зберігання та управління записами

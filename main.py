@@ -22,12 +22,12 @@ def main():
             print(fu.show_phone(args, book))
         elif command == "all":
             print(fu.show_all(book))
-        elif command == "add_birthday":
-            pass
-        elif command == "show_birthday":
-            pass
+        elif command == "add_b_day":
+            print(fu.add_birthday(args, book))
+        elif command == "show_b_day":
+            print(fu.show_birthday(args, book))
         elif command == "birthdays":
-            pass
+            print(fu.soon_birthdays(book))
         else:
             print("Invalid command.")
 
