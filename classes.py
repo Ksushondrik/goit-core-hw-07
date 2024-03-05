@@ -87,15 +87,7 @@ class Record:
 
     # Формат виводу даних про контакт
     def __str__(self) -> str:
-        stack = inspect.stack()         # Отримуємо стек викликів
-        current_call = stack[1]         # Перший елемент стеку - поточний виклик
-        caller_function_name = current_call.function        # Отримуємо ім'я функції, яка викликає метод
-        if caller_function_name == "show_phone":
-            return f"Contact name: {self.name},\t phones: {'; '.join(phone.value for phone in self.phones)}."
-        elif caller_function_name == "show_birthday":
-            return f"Contact name: {self.name},\t birthday: {self.birthday}."
-        else:
-            return f"Contact name: {self.name},\t phones: {'; '.join(phone.value for phone in self.phones)},\t birthday: {self.birthday}."
+        return f"Contact name: {self.name},\t\t phones: {'; '.join(str(phone.value) for phone in self.phones)},\t\t birthday: {self.birthday}."
 
 
 # Клас для зберігання та управління записами

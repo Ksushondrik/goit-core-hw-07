@@ -3,14 +3,14 @@ from classes import AddressBook, Record, Birthday
 from datetime import datetime, timedelta
 
 
-def parse_input (user_input):
+def parse_input(user_input):
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
     return cmd, *args
 
 
 @de.input_error
-def add_contact (args, book: AddressBook):
+def add_contact(args, book: AddressBook):
     name, phone, *_ = args
     record = book.find(name)
     message = "Contact updated."
@@ -35,11 +35,11 @@ def change_contact(args, book: AddressBook):
 
 
 @de.input_error
-def show_phone (args, book: AddressBook):
+def show_phone(args, book: AddressBook):
     name, *_ = args
     record = book.find(name)
     if isinstance(record, Record):
-        print(record)
+        return f"Contact name: {record.name},\t phones: {'; '.join(phone.value for phone in record.phones)}"
     else:
         raise Exception("Not found!")
 
@@ -53,6 +53,7 @@ def show_all(book: AddressBook):
     else:
         raise Exception("No mach to show!")
 
+
 @de.input_error
 def add_birthday(args, book: AddressBook):
     name, date, *_ = args
@@ -64,14 +65,16 @@ def add_birthday(args, book: AddressBook):
     else:
         raise Exception("Not found!")
 
+
 @de.input_error
 def show_birthday(args, book: AddressBook):
     name, *_ = args
     record = book.find(name)
     if isinstance(record, Record):
-        print(record)
+        return f"Contact name: {record.name},\t birthday: {record.birthday}."
     else:
         raise Exception("Not found!")
+
 
 @de.input_error
 def soon_birthdays(book: AddressBook):
@@ -82,9 +85,9 @@ def soon_birthdays(book: AddressBook):
             birthday = record.birthday.value
             birthday = birthday[:6] + str(today.year)
             birthday = (datetime.strptime(birthday, "%d.%m.%Y")).date()
-            if (0 <= (birthday - today).days <= 7):  # перевіряємо, чи наступає дата впродовж тижня, включаючи поточний день
+            if 0 <= (birthday - today).days <= 7:  # перевіряємо, чи наступає дата впродовж тижня, включаючи поточний день
                 day_week = (birthday.weekday())  # отримуємо день тижня, на який припадає день народження
-                user_dict = {"Name": name, "Birthday": birthday.strftime("%Y.%m.%d"),}  # створюємо словник з іменем користувача та датою народження
+                user_dict = {"Name": name, "Birthday": birthday.strftime("%Y.%m.%d"), }  # створюємо словник з іменем користувача та датою народження
                 if day_week == 5:  # перевіряємо чи не випадає на субботу
                     congratulations_day = birthday + timedelta(days=2)  # день для привітання на 2 дні пізніше, якщо так
                 elif day_week == 6:  # перевіряємо чи не випадає на неділю
@@ -99,15 +102,15 @@ def soon_birthdays(book: AddressBook):
         return f"There are no birthday parties this week"
     else:
         print("List of greetings for the current week:")
-        A = "Name"
-        B = "Birthday"
-        C = "Day_for_greetings"
-        s = f"|| {A:>15} | {B:>20} | {C:>20} ||"
+        a = "Name"
+        b = "Birthday"
+        c = "Day_for_greetings"
+        s = f"|| {a:>15} | {b:>20} | {c:>20} ||"
         print(s)
         for line in congratulation_list:
-            A = line["Name"]
-            B = line["Birthday"]
-            C = line["Day_for_greetings"]
-            s = f"|| {A:>15} | {B:>20} | {C:>20} ||"
+            a = line["Name"]
+            b = line["Birthday"]
+            c = line["Day_for_greetings"]
+            s = f"|| {a:>15} | {b:>20} | {c:>20} ||"
             print(s)
         return f"It's all!"

@@ -30,13 +30,13 @@ def main():
         elif command == "change":
             print(fu.change_contact(args, book))
         elif command == "phone":
-            fu.show_phone(args, book)
+            print(fu.show_phone(args, book))
         elif command == "all":
             print(fu.show_all(book))
-        elif command == "add_b_day":
+        elif command == "add-birthday":
             print(fu.add_birthday(args, book))
-        elif command == "show_b_day":
-            fu.show_birthday(args, book)
+        elif command == "show-birthday":
+            print(fu.show_birthday(args, book))
         elif command == "birthdays":
             print(fu.soon_birthdays(book))
         else:
