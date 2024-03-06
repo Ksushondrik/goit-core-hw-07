@@ -4,7 +4,7 @@ def input_error(func):
         try:
             return func(*args, **kwargs)
         except ValueError:
-            return "Enter the argument for the command. Give me name and phone, please."
+            return "Enter the argument for the command. Give me name and phone or birthday, please."
         except KeyError:
             return "No such name found"
         except IndexError:

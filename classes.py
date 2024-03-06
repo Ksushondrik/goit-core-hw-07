@@ -42,8 +42,10 @@ class Birthday(Field):
                 super().__init__(value)
                 # та перетворіть рядок на об'єкт datetime
                 datetime.strptime(value, "%d.%m.%Y")
-        except ValueError:
-            raise ValueError("Invalid date format. Use DD.MM.YYYY")
+            else:
+                raise ValueError("Invalid date format. Use DD.MM.YYYY")
+        except ValueError as e:
+            raise ValueError("Invalid date format. Use DD.MM.YYYY") from e
 
 
 # Клас для зберігання інформації про контакт, включаючи ім'я та список телефонів
