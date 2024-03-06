@@ -4,20 +4,11 @@ def input_error(func):
         try:
             return func(*args, **kwargs)
         except ValueError as e:
-            if e is None:
-                return "Enter the argument for the command. Give me name and phone or birthday, please."
-            else:
-                return f"Error: {e}"
+            return "Enter the argument for the command. Give me name and phone or birthday, please."
         except KeyError as e:
-            if e is None:
-                return "No such name found"
-            else:
-                return f"Error: {e}"
+            return "No such name found"
         except IndexError as e :
-            if e is None:
-                return "Enter the argument for the command. Give me name, please."
-            else:
-                return f"Error: {e}"
+            return "Enter the argument for the command. Give me name, please."
         except Exception as e:
             return f"Error: {e}"
 
